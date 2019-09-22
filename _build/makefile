@@ -1,8 +1,8 @@
 Mercury: test.o
 	g++ -o Mercury test.o
 
-test.o: ../app/src/test.cpp
-	g++ -c ../app/src/test.cpp
+test.o: ../testbed/src/test.cpp
+	g++ -c ../testbed/src/test.cpp
 
 clean:
 	rm *.o
