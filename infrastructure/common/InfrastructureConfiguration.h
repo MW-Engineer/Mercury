@@ -23,4 +23,19 @@ namespace MercuryInputConfig
 
 }
 
+namespace MercuryOutputConfig
+{
+	//start infrastructure
+	static const uint32 NUMBER_OF_CHANNELS = 1;
+
+	//Output Address
+	static const uint32 CHANNEL_1_ADDRESS = 0x10000001;
+
+	//Output Address
+	static const uint32 ALL_CHANNELS[NUMBER_OF_CHANNELS] =
+	{
+			CHANNEL_1_ADDRESS
+	};
+}
+
 #endif

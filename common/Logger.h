@@ -1,5 +1,5 @@
-#ifndef VIRTUAL_PLATFORM_H_
-#define VIRTUAL_PLATFORM_H_
+#ifndef LOGGER_H_
+#define LOGGER_H_
 
 #include <stdio.h>
 #include <string>

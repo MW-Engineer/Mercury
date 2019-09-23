@@ -5,20 +5,16 @@
 
 namespace MercuryCommon
 {
-
-	struct Sensor
-	{
-		//HW Address
-		uint32 address;
-
-		//Simulated Memory value
-		uint32 readValue;
-	};
-
 	struct OutputContainer
 	{
 		float64 accelValue;
 		uint16 checksum;
+	};
+
+	union accessHelper
+	{
+		uint16 data[4];
+		uint64 value;
 	};
 }
 #endif
