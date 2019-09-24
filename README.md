@@ -1,4 +1,4 @@
-Mercury - A work in-progress
+<h1>Mercury - A work in-progress</h1>
 
 Intro:
 A brief attempt to establish a simulated testbed.
