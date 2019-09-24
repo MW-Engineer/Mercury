@@ -3,9 +3,12 @@
 
 #include "../../common/CommonTypes.h"
 
+/**
+ * /brief Input Configuration
+ */
 namespace MercuryInputConfig
 {
-	//start infrastructure
+	//Number of Accelerometers(Sensors)
 	static const uint32 NUMBER_OF_ACCELEROMETERS = 3;
 
 	//Sensor Address
@@ -13,7 +16,7 @@ namespace MercuryInputConfig
 	static const uint32 ACCEL_2_ADDRESS = 0x00000002;
 	static const uint32 ACCEL_3_ADDRESS = 0x00000003;
 
-	//Sensor Address
+	//All Sensor Address
 	static const uint32 ALL_ACCELEROMETERS[NUMBER_OF_ACCELEROMETERS] =
 	{
 		ACCEL_1_ADDRESS,
@@ -23,15 +26,17 @@ namespace MercuryInputConfig
 
 }
 
+/**
+ * /brief Output Configuration
+ */
 namespace MercuryOutputConfig
 {
-	//start infrastructure
 	static const uint32 NUMBER_OF_CHANNELS = 1;
 
 	//Output Address
 	static const uint32 CHANNEL_1_ADDRESS = 0x10000001;
 
-	//Output Address
+	//All Output Address
 	static const uint32 ALL_CHANNELS[NUMBER_OF_CHANNELS] =
 	{
 			CHANNEL_1_ADDRESS

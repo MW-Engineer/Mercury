@@ -1,7 +1,9 @@
-<h1>Mercury - A work in-progress</h1>
+<h1>Mercury Testbed - A work in-progress</h1>
 
-Intro:
+<h2>Intro:</h2>
 A brief attempt to establish a simulated testbed.
+
+Also serving to cover basic C++ skills and techniques 
 
 This would include infrastructure: (In progress)
 <ul>
@@ -19,5 +21,9 @@ This would include a Testbed to view the output and view the input : (In progres
 <li>User interaction</li>
 <li>User visualization</li>
 </ul>
-Documentation:
-Doxygen generated via inline tags (Stretch)
+<h2>Documentation:</h2>
+Doxygen generated via inline tags (Stretch Goal)
+
+<h2>Entry Point</h2>
+/testbed/MercuryStartUp.cpp
+

@@ -1,7 +1,36 @@
 #include "HWManager.h"
 
+HWManager* HWManager::getInstance()
+{
+	if(instance == 0)
+	{
+		static HWManager self;
+		instance = &self;
+	}
+	return instance;
+}
+
+
+HWManager::HWManager(): allSensors(std::map<uint32, Sensor*>()) ,allChannels(std::map<uint32, Channel*>())
+{
+
+}
+
+HWManager::~HWManager()
+{
+	for(std::map<uint32, Sensor*>::iterator it = allSensors.begin();it != allSensors.end();it++)
+	{
+		delete it->second;
+	}
+	for(std::map<uint32, Channel*>::iterator it = allChannels.begin();it != allChannels.end();it++)
+	{
+		delete it->second;
+	}
+
+}
+
  bool HWManager::getSensorConfigration(uint32 numberOfSensors,
-		 const uint32* addresses, std::list<Sensor>& configurationToPopulate)
+		 const uint32* addresses, std::list<Sensor* >& configurationToPopulate)
 {
 	bool status = false;
 	if(addresses != 0 && numberOfSensors > 0)
@@ -11,17 +40,11 @@
 			status = checkAddress(addresses[x]);
 			if(status)
 			{
-				Sensor newSensor(addresses[x]);
 				//Default to linear trends for now
-				LinearTrend lt;
-				newSensor.setTrend(lt);
-				newSensor.setTrendFunc(LinearTrend::linearTrend);
+				allSensors[addresses[x]] = new Sensor(addresses[x]);
+				allSensors[addresses[x]]->setTrendFunc(Trends::preformLinearTrend);
 
-				uint32 val = newSensor.read();
-				val = newSensor.read();
-
-				HWManager::allSensors.insert(std::pair<uint32, Sensor>(addresses[x],newSensor));
-				configurationToPopulate.push_back(newSensor);
+				configurationToPopulate.push_back(allSensors[addresses[x]]);
 			}
 		}
 	}
@@ -29,7 +52,7 @@
 }
 
  bool HWManager::getChannelConfigration(uint32 numberOfOutputs,
-			const uint32* addresses, std::list<Channel>& configurationToPopulate)
+			const uint32* addresses, std::list<Channel*>& configurationToPopulate)
  {
 	bool status = false;
 	if(addresses != 0 && numberOfOutputs > 0)
@@ -39,15 +62,13 @@
 			status = checkAddress(addresses[x]);
 			if(status)
 			{
-				Channel newChannel;
-				HWManager::allChannels.insert(std::pair<uint32, Channel>(addresses[x],newChannel));
-				configurationToPopulate.push_back(newChannel);
+				allChannels[addresses[x]] = new Channel(addresses[x]);
+				configurationToPopulate.push_back(allChannels[addresses[x]]);
 			}
 		}
 	}
 	return status;
 }
-
 
 bool HWManager::checkAddress(uint32 requestedAddress)
 {
@@ -76,10 +97,10 @@ bool HWManager::checkSensors(uint32 requestedAddress)
 {
 	bool status = false;
 
-	std::map<uint32,Sensor>::iterator it;
+	std::map<uint32,Sensor*>::iterator it;
 	it = allSensors.find(requestedAddress);
 
-	if(it == HWManager::allSensors.end()) // It was not found
+	if(it == allSensors.end()) // It was not found
 	{
 		status = true;
 	}
@@ -91,16 +112,14 @@ bool HWManager::checkChannels(uint32 requestedAddress)
 {
 	bool status = false;
 
-	std::map<uint32,Channel>::iterator it;
+	std::map<uint32,Channel*>::iterator it;
 	it = allChannels.find(requestedAddress);
 
-	if(it == HWManager::allChannels.end()) // It was not found
+	if(it == allChannels.end()) // It was not found
 	{
 		status = true;
 	}
 	return status;
 }
 
-//Definition of the static variable
-std::map<uint32, Sensor> HWManager::allSensors;
-std::map<uint32, Channel> HWManager::allChannels;
+HWManager* HWManager::instance = 0;

@@ -4,6 +4,10 @@
 #include <stdio.h>
 #include <string>
 #include <iostream>
+
+/*
+ * Basic Logger class that can be replaced later with more robust capabilities
+ */
 class Logger
 {
 public:

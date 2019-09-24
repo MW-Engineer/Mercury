@@ -14,10 +14,13 @@ public:
 	virtual ~Channel();
 	bool isReadingValid();
 
-//	Channel& operator=(const Channel& other);
+
 private:
 	Channel();
 	Channel(uint32 newAddress);
+
+	Channel& operator=(const Channel& other);
+	Channel(const Channel&);
 
 	//HW Address
 	uint32 address;
