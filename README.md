@@ -1,18 +1,21 @@
-Mercury
+Mercury - A work in-progress
 
 Intro:
-Simulated redundant sensor fail over w/ testbed
+A brief attempt to establish a simulated testbed.
 
-This consists of three distinct components
-	1. Testbed
-	2. Infrastructure
-	3. Application
-	
--Testbed contains staging and configuration of the virtual infrastructure and application
+This would include infrastructure: (In progress)
+-Sensors - a input mechanism 
+-Channel - a output mechanism 
+-Platform - a grouping of hardware
+-Manager - to prevent erroneous hardware assignment
 
--Infrastructure is the virtual representation of the external input (hw sensors, external input, infrastructure) 
+This would include an application to test: (In progress)
 
--Application consists of the  the software modules reading the infrastructure layer, sensor abstration logic, and any addtional algorithm processing 
+This would include an Interface between the application and the infrastructure: (In progress)
+
+This would include a Testbed to view the output and view the input : (In progress)
+-User interaction
+-User visualization
 
 Documentation:
-TODO - Doxygen generated via inline tags
+Doxygen generated via inline tags (Stretch)
