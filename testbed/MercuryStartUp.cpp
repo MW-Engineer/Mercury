@@ -1,9 +1,7 @@
-#include <stdio.h>
 #include "MercuryTestBed.h"
 
 int main()
 {
-	//TODO - Spawn Thread
-	MercuryTestbed::StartTetbed();
+	MercuryTestbed::StartTestbed();
 	return 0;
 }

@@ -2,17 +2,16 @@
 #define INFRASTRUCTURE_SENSOR_H_
 
 #include "../../../common/CommonTypes.h"
-#include "../trend/Trend.h"
+#include "../trend/Trends.h"
 
-/** Forward declared HWManager to allow access to the priave constructor*/
+/** Forward declared HWManager to allow access to the private constructor*/
 class HWManager;
 
 /**
  * /class Sensor
  * /brief Sensor is encapsulation of a device reading in byte data
  *  as a 32 bit field. The Sensor at this point also generates
- *  the data. How the data is presented is captured in the trend
- *  object.
+ *  the data. How, the data is manipulated is captured by the TrendFunc
  */
 class Sensor {
 public:
@@ -23,7 +22,6 @@ public:
 
 	uint32 getAddress() const;
 	void setReadValue(uint32 readValue);
-	void setTrend(Trend newTrend);
 	void setTrendFunc(TrendFunc newTrend);
 
 	uint32 read();
@@ -31,14 +29,17 @@ public:
 protected:
 	Sensor();
 	Sensor(uint32 newAddress);
+	Sensor& operator=(const Sensor& other);
+	Sensor(const Sensor&);
 	//HW Address
 	uint32 address;
 
 	//Read Value of address
 	uint32 readValue;
 
+	//Function pointer
 	TrendFunc dataTrendPtr;
-	Trend dataTrend;
+
 	friend class HWManager;
 };
 

@@ -2,16 +2,14 @@
 #define _INTERFACE_H_
 
 #include "../infrastructure/platform/VirtualPlatform.h"
-#include "../infrastructure/common/InfrastructureCommonTypes.h"
 #include <list>
 
-//
+//Forward declare class to allow for friend
 class MercuryTestbed;
-
 
 /**
  *
- * /brief Singular interface that is visible to the testbed, platform and thrid party interact.
+ * /brief Singular interface that is visible to the testbed, platform and third party interact.
  * Interface understands the application to Infrastructure to Application and vis versa.
  */
 
@@ -41,6 +39,9 @@ private:
 	VirtualPlatform* virtualPlatform;
 
 	Interface();
+	Interface& operator=(const Interface& other);
+	Interface(const Interface&);
+
 	friend class MercuryTestbed;
 };
 

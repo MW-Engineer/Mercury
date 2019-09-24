@@ -35,13 +35,10 @@ std::map<uint32, uint32> Interface::getChannelOutput()
 		//TODO better dynamic sensor consolidation and abstraction
 		if(MercuryOutputConfig::NUMBER_OF_CHANNELS == 1)
 		{
-
 			uint32 channelValue = 0;
-			std::map<uint32, uint32>::iterator it = rawSensor.begin();
-			while (it != rawSensor.end())
+			for(std::map<uint32, uint32>::iterator it = rawSensor.begin();it != rawSensor.end();it++)
 			{
 				channelValue += it->second;
-				it++;
 			}
 			channel[MercuryOutputConfig::CHANNEL_1_ADDRESS] = channelValue/rawSensor.size();
 		}

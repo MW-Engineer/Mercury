@@ -3,14 +3,14 @@
 #include "MercuryTestbed.h"
 
 /**
- * /brief MercuryTestbed will be the
+ * /brief Entry point in the the Testbed
  */
-void MercuryTestbed::StartTetbed()
+void MercuryTestbed::StartTestbed()
 {
+	//Prevent any duplicate call
 	if(!MercuryTestbed::isStarted)
 	{
 		bool status = false;
-
 		status = intializeComponents();
 		if(status)
 		{
@@ -20,17 +20,15 @@ void MercuryTestbed::StartTetbed()
 			Logger::log("Error Starting up.");
 			return;
 		}
-
 		std::cout<<"All Hardware Initialized Successfully."<<std::endl;
 
-
+		//Temporary Interface to assist in testing partial testbed functionality
 		std::string input;
 		bool run = true;
 		while(run)
 		{
 			displayMenu();
 			std::cin>>input;
-
 			switch(validateInput(input))
 			{
 				case MenuConfiguration::OPTION_1:
@@ -72,7 +70,8 @@ uint8 MercuryTestbed::validateInput(const std::string input)
 
 void MercuryTestbed::displayMenu()
 {
-	std::cout<<"Please choose of one of the following options. " <<std::endl
+	std::cout<<std::endl
+			<<"Please choose of one of the following options. " <<std::endl
 			<< "Indicate your choice by entering the correspond number: "<<std::endl;
 	std::cout << MenuConfiguration::OPTION_1 <<") Read Sensors" << std::endl;
 	std::cout << MenuConfiguration::OPTION_2 <<") Zero Sensors" << std::endl;
@@ -89,8 +88,6 @@ void MercuryTestbed::displayAllData(std::map<uint32,uint32> valMap)
 		it++;
 	}
 }
-
-
 
 bool MercuryTestbed::intializeComponents()
 {

@@ -6,26 +6,20 @@
 
 #include "MenuConfiguration.h"
 
-
 class MercuryTestbed
 {
 public:
-	static void StartTetbed();
+	static void StartTestbed();
 
-	//Initalize testbed
+	//Initialize testbed
 	static bool intializeComponents();
 
-	//Helper Terminal Methods
+	//Temporary UI - Helper Methods
 	static uint8 validateInput(std::string input);
 	static void displayMenu();
 	static void displayAllData(std::map<uint32,uint32> valMap);
-
-
 private:
 	static bool isStarted;
-
-
-
 };
 
 #endif

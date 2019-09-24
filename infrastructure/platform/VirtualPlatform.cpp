@@ -1,6 +1,6 @@
 #include "VirtualPlatform.h"
 
-VirtualPlatform::VirtualPlatform():activeSensors(std::list<Sensor>()),activeChannels(std::list<Channel>())
+VirtualPlatform::VirtualPlatform():activeSensors(std::list<Sensor*>()),activeChannels(std::list<Channel*>())
 {
 }
 
@@ -8,8 +8,6 @@ VirtualPlatform::~VirtualPlatform()
 {
 
 }
-
-
 
 VirtualPlatform* VirtualPlatform::getPlatform()
 {
@@ -21,23 +19,22 @@ VirtualPlatform* VirtualPlatform::getPlatform()
 	return instance;
 }
 
-
 std::map<uint32, uint32> VirtualPlatform::getSensorOutput()
 {
 	std::map<uint32, uint32> sensorValues;
 
-	for (std::list<Sensor>::iterator it = activeSensors.begin(); it != activeSensors.end(); it++)
+	for (std::list<Sensor*>::iterator it = activeSensors.begin(); it != activeSensors.end(); it++)
 	{
-		sensorValues[it->getAddress()] = it->read();
+		sensorValues[(*it)->getAddress()] = (*it)->read();
 	}
 	return sensorValues;
 }
 
 void VirtualPlatform::zeroSensors()
 {
-	for (std::list<Sensor>::iterator it = activeSensors.begin(); it != activeSensors.end(); it++)
+	for (std::list<Sensor*>::iterator it = activeSensors.begin(); it != activeSensors.end(); it++)
 	{
-		it->setReadValue(0);
+		(*it)->setReadValue(0);
 	}
 }
 
@@ -47,7 +44,8 @@ void VirtualPlatform::zeroSensors()
 bool VirtualPlatform::initialize()
 {
 	bool status = false;
-	status = HWManager::getSensorConfigration(MercuryInputConfig::NUMBER_OF_ACCELEROMETERS,
+	status = HWManager::getInstance()->getSensorConfigration(
+			MercuryInputConfig::NUMBER_OF_ACCELEROMETERS,
 			MercuryInputConfig::ALL_ACCELEROMETERS,
 			activeSensors);
 
@@ -57,7 +55,7 @@ bool VirtualPlatform::initialize()
 	}
 	else
 	{
-		status = HWManager::getChannelConfigration(MercuryOutputConfig::NUMBER_OF_CHANNELS,
+		status = HWManager::getInstance()->getChannelConfigration(MercuryOutputConfig::NUMBER_OF_CHANNELS,
 				MercuryOutputConfig::ALL_CHANNELS,
 				activeChannels);
 
