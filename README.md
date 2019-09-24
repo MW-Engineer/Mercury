@@ -4,11 +4,12 @@ Intro:
 A brief attempt to establish a simulated testbed.
 
 This would include infrastructure: (In progress)
--Sensors - a input mechanism 
--Channel - a output mechanism 
--Platform - a grouping of hardware
--Manager - to prevent erroneous hardware assignment
-
+<ul>
+<li>-Sensors - a input mechanism</li>
+<li>-Channel - a output mechanism </li>
+<li>-Platform - a grouping of hardware</li>
+<li>-Manager - to prevent erroneous hardware assignment</li>
+</ul>
 This would include an application to test: (In progress)
 
 This would include an Interface between the application and the infrastructure: (In progress)
